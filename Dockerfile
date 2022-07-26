@@ -1,7 +1,7 @@
-FROM php:8.0-fpm-alpine3.16
+FROM php:8.0.21-fpm-alpine3.16
 
 LABEL maintainer="marji@morpht.com"
-LABEL org.opencontainers.image.source="https://github.com/morpht/ci-php-8"
+LABEL org.opencontainers.image.source="https://github.com/marji/ci-php"
 
 ENV COMPOSER_VERSION=2.3.9 \
   COMPOSER_HASH_SHA256=0ec0cd63115cad28307e4b796350712e3cb77db992399aeb4a18a9c0680d7de2
