@@ -7,7 +7,7 @@ on:
     tags:
       # Build on every tag:
       - '**'
-  pull_request
+  pull_request:
 
 jobs:
   login-build-and-push:
