@@ -2,11 +2,12 @@ name: build_and_publish
 on:
   push:
     branches-ignore:
-      # prevent building on commits to main (use tag to build)
-      - 'main'
+      # prevent building on commits to any branch
+      - '**'
     tags:
       # Build on every tag:
       - '**'
+  pull_request
 
 jobs:
   login-build-and-push:
