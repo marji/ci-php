@@ -46,10 +46,10 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/ci-php:${{ steps.getbranch.outputs.mybranch }}
+            ghcr.io/${{ github.repository_owner }}/ci-php:latest
       -
         if: contains(github.ref, 'refs/heads/')
-        name: Build and push the feature branch imag
+        name: Build and push the feature branch image
         uses: docker/build-push-action@v2
         with:
           push: true
