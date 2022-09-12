@@ -1,4 +1,4 @@
-FROM php:8.1.10-fpm-alpine3.16
+FROM php:8.1.10-fpm-alpine3.15
 
 LABEL maintainer="marji@morpht.com"
 LABEL org.opencontainers.image.source="https://github.com/marji/ci-php"
