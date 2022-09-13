@@ -17,4 +17,4 @@ jobs:
           name: ci-php
           # NOTE: using Personal Access Token
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: review-pr${{github.event.pull_request.number}}
+          tag: review-pr-${{github.event.pull_request.number}}
