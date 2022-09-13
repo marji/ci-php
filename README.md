@@ -2,7 +2,7 @@
 
 Docker image based on the official dockerhub image php:8.x-fpm-alpine3.y
 
-A few modifications:
+There are a few modifications:
 
 - added composer v2.3.x
 - installed several packages, e.g. git and mysql-client
