@@ -38,7 +38,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/ci-php:latest
-            ghcr.io/${{ github.repository_owner }}/ci-php:${{ steps.getbranch.outputs.mybranch }}
+            ghcr.io/${{ github.repository_owner }}/ci-php:${{ github.ref_name }}
       -
         if: contains(github.ref, 'refs/pull/')
         name: Build and push pull request image
@@ -46,7 +46,7 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/ci-php:review-pr-${{ github.event.pull_request.number }}
+            ghcr.io/${{ github.repository_owner }}/ci-php:review-pr-${{ github.event.pull_request.number }}-${{ github.head_ref }}
       -
         if: contains(github.ref, 'refs/heads/')
         name: Build and push the feature branch image
@@ -54,4 +54,4 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/ci-php:${{ steps.getbranch.outputs.mybranch }}
+            ghcr.io/${{ github.repository_owner }}/ci-php:${{ github.ref_name }}
