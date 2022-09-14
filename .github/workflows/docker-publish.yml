@@ -12,12 +12,6 @@ on:
 jobs:
   login-build-and-push:
     runs-on: ubuntu-latest
-
-    env:
-      GH_BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
-      # github.head_ref is only defined on pull_request events.
-      # When not a PR, github.ref_name containts the branch name.
-
     steps:
       -
         name: Checkout
@@ -44,7 +38,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/ci-php:latest
-            ghcr.io/${{ github.repository_owner }}/ci-php:${{ steps.getbranch.outputs.mybranch }}
+            ghcr.io/${{ github.repository_owner }}/ci-php:${{ github.ref_name }}
       -
         if: contains(github.ref, 'refs/pull/')
         name: Build and push pull request image
@@ -60,4 +54,4 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/ci-php:${{ steps.getbranch.outputs.mybranch }}
+            ghcr.io/${{ github.repository_owner }}/ci-php:${{ github.ref_name }}
