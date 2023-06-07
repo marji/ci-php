@@ -3,8 +3,8 @@ FROM php:8-alpine
 LABEL maintainer="marji@morpht.com"
 LABEL org.opencontainers.image.source="https://github.com/marji/ci-php"
 
-ENV COMPOSER_VERSION=2.5.5 \
-  COMPOSER_HASH_SHA256=566a6d1cf4be1cc3ac882d2a2a13817ffae54e60f5aa7c9137434810a5809ffc
+ENV COMPOSER_VERSION=2.5.7 \
+  COMPOSER_HASH_SHA256=9256c4c1c803b9d0cb7a66a1ab6c737e48c43cc6df7b8ec9ec2497a724bf44de
 
 RUN apk add --no-cache --update git \
         bash \
