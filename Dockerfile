@@ -1,4 +1,4 @@
-FROM php:8.0.27-fpm-alpine3.17
+FROM php:8.0.29-alpine3.16
 
 LABEL maintainer="marji@morpht.com"
 LABEL org.opencontainers.image.source="https://github.com/marji/ci-php"
@@ -12,13 +12,21 @@ RUN apk add --no-cache --update git \
         mysql-client \
         patch \
         rsync \
-        libpng libpng-dev \
-    && docker-php-ext-install gd pdo pdo_mysql \
+        libpng libpng-dev libzip-dev \
+    && docker-php-ext-install gd pdo pdo_mysql zip \
     && apk del libpng-dev \
     && rm -rf /var/cache/apk/* \
     && curl -L -o /usr/local/bin/composer https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar \
     && echo "$COMPOSER_HASH_SHA256  /usr/local/bin/composer" | sha256sum -c \
     && chmod +x /usr/local/bin/composer
 
+#RUN adduser -S -h /home/runner -u 1001 -G ntp runner
+RUN adduser -D -h /home/runner -u 1001 -G ntp runner
+    # this is 1001:123 which matches github runner
+
 # Remove warning about running as root in composer
-ENV COMPOSER_ALLOW_SUPERUSER=1
+#ENV COMPOSER_ALLOW_SUPERUSER=1
+
+COPY entrypoint.sh /root/entrypoint.sh
+ENTRYPOINT /root/entrypoint.sh
+# https://stackoverflow.com/questions/60699897/how-to-make-non-root-user-as-sudo-user-in-docker-alpine-image
