@@ -1,5 +1,7 @@
 FROM php:8.1.18-fpm-alpine3.17
 
+ARG RUNNER_UID=1001
+
 LABEL maintainer="marji@morpht.com"
 LABEL org.opencontainers.image.source="https://github.com/marji/ci-php"
 
@@ -20,7 +22,6 @@ RUN apk add --no-cache --update git \
     && echo "$COMPOSER_HASH_SHA256  /usr/local/bin/composer" | sha256sum -c \
     && chmod +x /usr/local/bin/composer
 
-#RUN adduser -D -h /home/runner -u 1001 -G ntp runner
-    # this is 1001:123 which matches github runner
-RUN adduser -D -h /home/runner -u 1001  runner
+RUN adduser -D -h /home/runner -u $RUNNER_UID runner
+
 USER runner
