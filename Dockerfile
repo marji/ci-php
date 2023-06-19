@@ -20,7 +20,7 @@ RUN apk add --no-cache --update git \
     && echo "$COMPOSER_HASH_SHA256  /usr/local/bin/composer" | sha256sum -c \
     && chmod +x /usr/local/bin/composer
 
-RUN adduser -D -h /home/runner -u 1001 -G ntp runner
+#RUN adduser -D -h /home/runner -u 1001 -G ntp runner
     # this is 1001:123 which matches github runner
-
+RUN adduser -D -h /home/runner -u 1001  runner
 USER runner
